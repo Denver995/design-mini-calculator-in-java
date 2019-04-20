@@ -1,9 +1,13 @@
-package fr.testfx.calculaor.view;
+package fr.testfx.calculator.view;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.fxml.Initializable;
+import java.net.URL;
+import java.util.ResourceBundle;
+import javafx.event.ActionEvent;
 
 public class CalculatorMapping {
 	@FXML
@@ -63,98 +67,97 @@ public class CalculatorMapping {
 	}
 	
 	//Méthode qui initialise notre interface graphique
-    //avec nos données métier
-    @FXML
-    private void initialize() {
-    }
+    public void initialize(URL url, ResourceBundle rb) {
+	        // TODO
+	}
     
     //Méthode qui sera exécuté lorsqu'on clique sur le boutton 1
-    private void on_click_one() {
+    public void on_click_one() {
     	String oldvalue = input.getText();
     	input.setText(oldvalue + "1");
     }
     
     //Méthode qui sera exécuté lorsqu'on clique sur le boutton 1
-    private void on_click_two() {
+    public void on_click_two() {
     	String oldvalue = input.getText();
     	input.setText(oldvalue + "2");
     }
     
     //Méthode qui sera exécuté lorsqu'on clique sur le boutton 1
-    private void on_click_three() {
+    public void on_click_three() {
     	String oldvalue = input.getText();
     	input.setText(oldvalue + "3");
     }
     
   //Méthode qui sera exécuté lorsqu'on clique sur le boutton 1
-    private void on_click_four() {
+    public void on_click_four() {
     	String oldvalue = input.getText();
     	input.setText(oldvalue + "4");
     }
     
     //Méthode qui sera exécuté lorsqu'on clique sur le boutton 1
-    private void on_click_five() {
+    public void on_click_five() {
     	String oldvalue = input.getText();
     	input.setText(oldvalue + "5");
     }
     
     //Méthode qui sera exécuté lorsqu'on clique sur le boutton 1
-    private void on_click_six() {
+    public void on_click_six() {
     	String oldvalue = input.getText();
     	input.setText(oldvalue + "6");
     }
     
   //Méthode qui sera exécuté lorsqu'on clique sur le boutton 1
-    private void on_click_seven() {
+    public void on_click_seven() {
     	String oldvalue = input.getText();
     	input.setText(oldvalue + "7");
     }
     
     //Méthode qui sera exécuté lorsqu'on clique sur le boutton 1
-    private void on_click_height() {
+    public void on_click_height() {
     	String oldvalue = input.getText();
     	input.setText(oldvalue + "8");
     }
     
     //Méthode qui sera exécuté lorsqu'on clique sur le boutton 1
-    private void on_click_nine() {
+    public void on_click_nine() {
     	String oldvalue = input.getText();
     	input.setText(oldvalue + "9");
     }
     
   //Méthode qui sera exécuté lorsqu'on clique sur le boutton 1
-    private void on_click_zero() {
+    public void on_click_zero() {
     	String oldvalue = input.getText();
     	input.setText(oldvalue + "0");
     }
     
     //Méthode qui sera exécuté lorsqu'on clique sur le boutton 1
-    private void on_click_point() {
+    public void on_click_point() {
     	String oldvalue = input.getText();
     	input.setText(oldvalue + ".");
     }
     
     //Méthode qui sera exécuté lorsqu'on clique sur le boutton 1
-    private void on_click_clear() {
+    public void on_click_clear() {
     	input.setText("");
     }
     
   //Méthode qui sera exécuté lorsqu'on clique sur le boutton 1
-    private void on_click_percent() {
+    public void on_click_percent() {
     	String oldvalue = input.getText();
     	input.setText(oldvalue + "%");
     }
     
     //Méthode qui sera exécuté lorsqu'on clique sur le boutton 1
-    private void on_click_doublezero() {
+    public void on_click_doublezero() {
     	String oldvalue = input.getText();
     	input.setText(oldvalue + "00");
     }
     
   //Méthode qui sera exécuté lorsqu'on clique sur le boutton 1
-    private void on_click_plus() {
+    public void on_click_plus() {
     	String value = input.getText();
-    	long valueconverted = Integer.parseInt(value);
+    	long valueconverted = Long.parseLong(value);
     	this.fnumber = valueconverted;
     	input.setText("");
     	promp.setText(valueconverted + "+");
@@ -162,9 +165,9 @@ public class CalculatorMapping {
     }
     
     //Méthode qui sera exécuté lorsqu'on clique sur le boutton 1
-    private void on_click_minus() {
+    public void on_click_minus() {
     	String value = input.getText();
-    	long valueconverted = Integer.parseInt(value);
+    	long valueconverted = Long.parseLong(value);
     	this.fnumber = valueconverted;
     	input.setText("");
     	promp.setText(valueconverted + "-");
@@ -172,9 +175,9 @@ public class CalculatorMapping {
     }
     
     //Méthode qui sera exécuté lorsqu'on clique sur le boutton 1
-    private void on_click_div() {
+    public void on_click_div() {
     	String value = input.getText();
-    	long valueconverted = Integer.parseInt(value);
+    	long valueconverted = Long.parseLong(value);
     	this.fnumber = valueconverted;
     	input.setText("");
     	promp.setText(valueconverted + "/");
@@ -182,9 +185,9 @@ public class CalculatorMapping {
     }
     
   //Méthode qui sera exécuté lorsqu'on clique sur le boutton 1
-    private void on_click_mult() {
+    public void on_click_mult() {
     	String value = input.getText();
-    	long valueconverted = Integer.parseInt(value);
+    	long valueconverted = Long.parseLong(value);
     	this.fnumber = valueconverted;
     	input.setText("");
     	promp.setText(valueconverted + "X");
@@ -192,9 +195,9 @@ public class CalculatorMapping {
     }
     
   //Méthode qui sera exécuté lorsqu'on clique sur le boutton 1
-    private void on_click_sin() {
+    public void on_click_sin() {
     	String value = input.getText();
-    	long valueconverted = Integer.parseInt(value);
+    	long valueconverted = Long.parseLong(value);
     	this.fnumber = valueconverted;
     	input.setText("");
     	promp.setText("Sin"+valueconverted);
@@ -202,10 +205,10 @@ public class CalculatorMapping {
     }
     
     //Méthode qui sera exécuté lorsqu'on clique sur le boutton 1
-    private void on_click_cos() {
+    public void on_click_cos() {
     	
     	String value = input.getText();
-    	long valueconverted = Integer.parseInt(value);
+    	long valueconverted = Long.parseLong(value);
     	this.fnumber = valueconverted;
     	input.setText("");
     	promp.setText("Cos"+valueconverted);
@@ -213,11 +216,11 @@ public class CalculatorMapping {
     }
     
   //Méthode qui sera exécuté lorsqu'on clique sur le boutton 1
-    private void on_click_equal() {
+    public void on_click_equal() {
     	switch(operation) {
     	case "+":
     		String value = input.getText();
-    		this.snumber = Integer.parseInt(value);
+    		this.snumber = Long.parseLong(value);
     		long result = this.fnumber + this.snumber;
     		input.setText(String.valueOf(result));
     		String oldpromp = promp.getText();
@@ -226,7 +229,7 @@ public class CalculatorMapping {
     		
     	case "-":
     		String valuemoin = input.getText();
-    		this.snumber = Integer.parseInt(valuemoin);
+    		this.snumber = Long.parseLong(valuemoin);
     		long resultmoin = this.fnumber - this.snumber;
     		input.setText(String.valueOf(resultmoin));
     		String oldprompmoin = promp.getText();
@@ -235,7 +238,7 @@ public class CalculatorMapping {
     	
     	case "X":
     		String valuemult = input.getText();
-    		this.snumber = Integer.parseInt(valuemult);
+    		this.snumber = Long.parseLong(valuemult);
     		long resultmult = this.fnumber * this.snumber;
     		input.setText(String.valueOf(resultmult));
     		String oldpromptmult = promp.getText();
@@ -244,7 +247,7 @@ public class CalculatorMapping {
     		
     	case "/":
     		String valuediv = input.getText();
-    		this.snumber = Integer.parseInt(valuediv);
+    		this.snumber = Long.parseLong(valuediv);
     		long resultdiv = this.fnumber / this.snumber;
     		input.setText(String.valueOf(resultdiv));
     		String oldprompdiv = promp.getText();
