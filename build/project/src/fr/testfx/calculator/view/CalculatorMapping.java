@@ -3,15 +3,14 @@ package fr.testfx.calculator.view;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.fxml.Initializable;
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.event.ActionEvent;
+import java.math.*;
 
 public class CalculatorMapping {
-	@FXML
-	public Button zero;
-	@FXML
-	public Button doublezero;
 	@FXML
 	public Button one;
 	@FXML
@@ -27,9 +26,13 @@ public class CalculatorMapping {
 	@FXML
 	public Button seven;
 	@FXML
-	public Button eigth;
+	public Button eight;
 	@FXML
 	public Button nine;
+	@FXML
+	public Button zero;
+	@FXML
+	public Button doublezero;
 	@FXML
 	public Button point;
 	@FXML
@@ -65,6 +68,7 @@ public class CalculatorMapping {
 	
 	private long fnumber;
 	private long snumber;
+	private long prompt;
 	private String operation;
 
 	public CalculatorMapping() {
@@ -75,22 +79,6 @@ public class CalculatorMapping {
     public void initialize(URL url, ResourceBundle rb) {
 	        // TODO
 	}
-    
-    public void desactiveAllButton() {
-		Button buttons[] = {this.point, this.doublezero, this.zero, this.one, this.two, this.three, this.four, this.five, this.six, this.seven, this.eigth, this.nine};
-		for(int i=0; i < buttons.length; i++) {
-			if(!buttons[i].isDisable())
-				buttons[i].setDisable(true);
-		}
-    }
-    
-    public void activeAllButton() {
-		Button buttons[] = {this.point, this.doublezero, this.zero, this.one, this.two, this.three, this.four, this.five, this.six, this.seven, this.eigth, this.nine};
-		for(int i=0; i < buttons.length; i++) {
-			if(buttons[i].isDisable())
-				buttons[i].setDisable(false);
-		}
-    }
     
     //Méthode qui sera exécuté lorsqu'on clique sur le boutton 1
     public void on_click_one() {
@@ -199,18 +187,12 @@ public class CalculatorMapping {
     //Méthode qui sera exécuté lorsqu'on clique sur le boutton 1
     public void on_click_clear() {
     	input.setText("");
-    	this.activeAllButton();
     }
     
   //Méthode qui sera exécuté lorsqu'on clique sur le boutton 1
     public void on_click_percent() {
-    	String value = input.getText();
-    	input.setText(value + "%");
-    	long valueconverted = Long.parseLong(value);
-    	this.fnumber = valueconverted;
-    	input.setText("");
-    	promp.setText(valueconverted + "%");
-    	operation = "%";
+    	String oldvalue = input.getText();
+    	input.setText(oldvalue + "%");
     }
     
     //Méthode qui sera exécuté lorsqu'on clique sur le boutton 1
@@ -221,19 +203,16 @@ public class CalculatorMapping {
     
   //Méthode qui sera exécuté lorsqu'on clique sur le boutton 1
     public void on_click_plus() {
-    	this.activeAllButton();
     	String value = input.getText();
     	long valueconverted = Long.parseLong(value);
     	this.fnumber = valueconverted;
     	input.setText("");
     	promp.setText(valueconverted + "+");
     	operation = "+";
-    	this.activeAllButton();
     }
     
     //Méthode qui sera exécuté lorsqu'on clique sur le boutton 1
     public void on_click_minus() {
-    	this.activeAllButton();
     	String value = input.getText();
     	long valueconverted = Long.parseLong(value);
     	this.fnumber = valueconverted;
@@ -244,7 +223,6 @@ public class CalculatorMapping {
     
     //Méthode qui sera exécuté lorsqu'on clique sur le boutton 1
     public void on_click_div() {
-    	this.activeAllButton();
     	String value = input.getText();
     	long valueconverted = Long.parseLong(value);
     	this.fnumber = valueconverted;
@@ -255,7 +233,6 @@ public class CalculatorMapping {
     
   //Méthode qui sera exécuté lorsqu'on clique sur le boutton 1
     public void on_click_mult() {
-    	this.activeAllButton();
     	String value = input.getText();
     	long valueconverted = Long.parseLong(value);
     	this.fnumber = valueconverted;
@@ -270,8 +247,6 @@ public class CalculatorMapping {
     	promp.setText("Sin"+value);
 		double result = Math.sin(Double.parseDouble(value));
 		input.setText(Double.toString(result));
-		this.fnumber = (long) result;
-		
     }
     
     //Méthode qui sera exécuté lorsqu'on clique sur le boutton 1
@@ -281,7 +256,6 @@ public class CalculatorMapping {
     	promp.setText("Cos"+value);
 		double result = Math.cos(Double.parseDouble(value));
 		input.setText(Double.toString(result));
-		this.fnumber = (long) result;
     }
     
   //Méthode qui sera exécuté lorsqu'on clique sur le boutton 1
@@ -291,20 +265,15 @@ public class CalculatorMapping {
     	promp.setText("Tan"+value);
 		double result = Math.tan(Double.parseDouble(value));
 		input.setText(Double.toString(result));
-		this.fnumber = (long) result;
     }
     
   //Méthode qui sera exécuté lorsqu'on clique sur le boutton 1
     public void on_click_squareroot() {
     	
     	String value = input.getText();
-    	if(Double.parseDouble(value) < 0) {
-    		input.setText("Math Error");
-    	}
     	promp.setText("√"+value);
 		double result = Math.sqrt(Double.parseDouble(value));
 		input.setText(Double.toString(result));
-		this.fnumber = (long) result;
     }
     
     //Méthode qui sera exécuté lorsqu'on clique sur le boutton 1
@@ -312,24 +281,26 @@ public class CalculatorMapping {
     	
     	String value = input.getText();
     	promp.setText(value+"²");
-		long result = Long.parseLong(value)*Long.parseLong(value);
-		input.setText(Long.toString(result));
-		this.fnumber = result;
+		double result = Double.parseDouble(value)*Double.parseDouble(value);
+		input.setText(Double.toString(result));
     }
     
   //Méthode qui sera exécuté lorsqu'on clique sur le boutton 1
     public void on_click_negation() {
     	
     	String value = input.getText();
-    	long convertedvalue = Long.parseLong(value);
-    	convertedvalue = -1*convertedvalue;
-    	promp.setText(Long.toString(convertedvalue));
-    	input.setText(Long.toString(convertedvalue));
+    	double convertedvalue = Double.parseDouble(value);
+    	if( convertedvalue > 0)
+    		convertedvalue = -convertedvalue;
+    	else if(convertedvalue < 0)
+    		convertedvalue = convertedvalue;
+    	promp.setText(Double.toString(convertedvalue));
+		input.setText(Double.toString(convertedvalue));
     }
     
   //Méthode qui sera exécuté lorsqu'on clique sur le boutton 1
     public void on_click_power() {
-    	this.activeAllButton();
+    	
     	String value = input.getText();
     	long valueconverted = Long.parseLong(value);
     	this.fnumber = valueconverted;
@@ -340,77 +311,58 @@ public class CalculatorMapping {
     
   //Méthode qui sera exécuté lorsqu'on clique sur le boutton 1
     public void on_click_equal() {
-    	this.desactiveAllButton();
     	switch(operation) {
-	    	case "+":
-	    		String value = input.getText();
-	    		this.snumber = Long.parseLong(value);
-	    		long result = this.fnumber + this.snumber;
-	    		input.setText(String.valueOf(result));
-	    		String oldpromp = promp.getText();
-	    		promp.setText(oldpromp + value);
-	    		operation = "";
-	    		break;
-	    		
-	    	case "-":
-	    		String valuemoin = input.getText();
-	    		this.snumber = Long.parseLong(valuemoin);
-	    		long resultmoin = this.fnumber - this.snumber;
-	    		input.setText(String.valueOf(resultmoin));
-	    		String oldprompmoin = promp.getText();
-	    		promp.setText(oldprompmoin + valuemoin);
-	    		operation = "";
-	    		break;
-	    	
-	    	case "X":
-	    		String valuemult = input.getText();
-	    		this.snumber = Long.parseLong(valuemult);
-	    		long resultmult = this.fnumber * this.snumber;
-	    		input.setText(String.valueOf(resultmult));
-	    		String oldpromptmult = promp.getText();
-	    		promp.setText(oldpromptmult + valuemult);
-	    		operation = "";
-	    		break;
-	    		
-	    	case "^":
-	    		String valuepower = input.getText();
-	    		this.snumber = Long.parseLong(valuepower);
-	    		double resultpower = Math.pow((double)this.fnumber, (double)this.snumber);
-	    		input.setText(String.valueOf(resultpower));
-	    		String oldpromptpower = promp.getText();
-	    		promp.setText(oldpromptpower + valuepower);
-	    		operation = "";
-	    		break;
-	    		
-	    	case "%":
-	    		String valuemod = input.getText();
-	    		this.snumber = Long.parseLong(valuemod);
-	    		long resultmod = Math.floorMod(this.fnumber, this.snumber);
-	    		input.setText(String.valueOf(resultmod));
-	    		String oldpromptmod = promp.getText();
-	    		promp.setText(oldpromptmod + valuemod);
-	    		operation = "";
-	    		break;
-	    		
-	    	case "/":
-	    		String valuediv = input.getText();
-	    		if(valuediv.equals("0")) {
-	    			input.setText("Math Error");
-	    			promp.setText("");
-	  
-	    		}else {
-	    			this.snumber = Long.parseLong(valuediv);
-	        		long resultdiv = this.fnumber / this.snumber;
-	        		input.setText(String.valueOf(resultdiv));
-	        		String oldprompdiv = promp.getText();
-	        		promp.setText(oldprompdiv + valuediv);
-	        		operation = "";
-	    		}
-	    		break;
-	    	default:
-	    		promp.setText("0");
-	    		break;
-	    	}
+    	case "+":
+    		String value = input.getText();
+    		this.snumber = Long.parseLong(value);
+    		long result = this.fnumber + this.snumber;
+    		input.setText(String.valueOf(result));
+    		String oldpromp = promp.getText();
+    		promp.setText(oldpromp + value);
+    		break;
+    		
+    	case "-":
+    		String valuemoin = input.getText();
+    		this.snumber = Long.parseLong(valuemoin);
+    		long resultmoin = this.fnumber - this.snumber;
+    		input.setText(String.valueOf(resultmoin));
+    		String oldprompmoin = promp.getText();
+    		promp.setText(oldprompmoin + valuemoin);
+    		break;
+    	
+    	case "X":
+    		String valuemult = input.getText();
+    		this.snumber = Long.parseLong(valuemult);
+    		long resultmult = this.fnumber * this.snumber;
+    		input.setText(String.valueOf(resultmult));
+    		String oldpromptmult = promp.getText();
+    		promp.setText(oldpromptmult + valuemult);
+    		break;
+    		
+    	case "^":
+    		String valuepower = input.getText();
+    		this.snumber = Long.parseLong(valuepower);
+    		double resultpower = Math.pow((double)this.fnumber, (double)this.snumber);
+    		input.setText(String.valueOf(resultpower));
+    		String oldpromptpower = promp.getText();
+    		promp.setText(oldpromptpower + valuepower);
+    		break;
+    		
+    	case "/":
+    		String valuediv = input.getText();
+    		if(valuediv.equals("0")) {
+    			input.setText("Math Error");
+    			promp.setText("");
+  
+    		}else {
+    			this.snumber = Long.parseLong(valuediv);
+        		long resultdiv = this.fnumber / this.snumber;
+        		input.setText(String.valueOf(resultdiv));
+        		String oldprompdiv = promp.getText();
+        		promp.setText(oldprompdiv + valuediv);
+    		}
+    		break;
+    	}
     }
 
 
